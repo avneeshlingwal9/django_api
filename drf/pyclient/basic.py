@@ -2,14 +2,18 @@ import requests
 
 endpoint = "https://httpbin.org/anything" ## The endpoint of the api. 
 
-get_response = requests.get(endpoint , json={"data": "hello world"} )
+endpoint = "http://localhost:8000/api/" #http://locahost:8000/"
+
+
  ## HTTP Request. with JSON data.
 
-
+get_response = requests.get(endpoint)
 
 print(get_response.text) # Prints the code. 
 
-get_response = requests.get(endpoint, data={"query" : "hello world"})
-print(get_response.json())
+print(get_response.status_code)
+
+print(get_response.json()['message'])
+
 
 

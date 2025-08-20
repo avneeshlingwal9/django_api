@@ -7,13 +7,11 @@ endpoint = "http://localhost:8000/api/" #http://locahost:8000/"
 
  ## HTTP Request. with JSON data.
 
-get_response = requests.get(endpoint)
+get_response = requests.get(endpoint , params={"abc": 123}, json={"query": "What"})
 
-print(get_response.text) # Prints the code. 
+print("Respose is: ", get_response.text)
 
-print(get_response.status_code)
 
-print(get_response.json()['message'])
 
 
 

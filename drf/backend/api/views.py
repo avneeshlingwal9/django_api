@@ -1,24 +1,23 @@
 from django.http import JsonResponse
 import json
 
+from products.models import Product
+
 
 def api_home(request, *args, **kwargs):
 
-    #return JsonResponse({"message": "Hello World"}) ## Raw hardcoded data, but we may want to use, data from database itself
-    body = json.loads(request.body) 
-
-    
     data = {}
 
-    try: 
-        data = body
-    except:
+    model_data = Product.objects.all().order_by("?").first()
 
-        pass
+    if model_data:
 
-    data['params'] = dict(request.GET) # url query parameters.  
-    data['headers'] = dict(request.headers) 
-    data['content-type'] = request.content_type
+        data['id'] = model_data.id
+        data['title'] = model_data.title
+        data['content'] = model_data.content
+        data['price'] = model_data.price
+
+
 
 
 
